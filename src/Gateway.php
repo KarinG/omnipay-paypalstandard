@@ -102,11 +102,11 @@ class Gateway extends AbstractGateway
 
     public function getMerchantAccountEmail()
     {
-        return $this->getParameter('Merchant Account Email');
+        return $this->getParameter('MerchantAccountEmail');
     }
 
     public function setMerchantAccountEmail($value)
     {
-        return $this->setParameter('Merchant Account Email', $value);
+        return $this->setParameter('MerchantAccountEmail', $value);
     }
 }

@@ -146,10 +146,11 @@ class AuthorizeRequest extends AbstractRequest
       'amount' => $this->getAmount(),
       //'currency_code' => $this->getCurrencyNumeric(),
       'currency_code' => $this->getCurrency(),
-      'invoice' => $this->getTransactionId(),
       'email' => $this->getCard()->getEmail(),
+      'transaction_id' => $this->getTransactionId(),
       //'PBX_RETOUR' => 'Mt:M;Id:R;Ref:A;Erreur:E;sign:K',
       //'PBX_TIME' => $this->getTime(),
+      'item_name' => $this->getDescription(),
     );
   }
 
@@ -166,6 +167,7 @@ class AuthorizeRequest extends AbstractRequest
       //'PBX_IDENTIFIANT' => $this->getIdentifiant(),
       //'type' => $this->getTransactionType(),
     );
+    $test = 1;
   }
 
   /**
