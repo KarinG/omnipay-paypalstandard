@@ -8,7 +8,6 @@ use Omnipay\Common\AbstractGateway;
  */
 class Gateway extends AbstractGateway
 {
-
   /**
    * get the name of your processor. This will be the name used w
    * @return string
@@ -26,8 +25,8 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-            'username' => '',
-            'password' => '',
+            'MerchantAccountEmail' => '',
+            //'password' => '',
             'testMode' => false,
         );
     }
@@ -90,6 +89,7 @@ class Gateway extends AbstractGateway
     {
         return $this->setParameter('username', $value);
     }
+
     public function getPassword()
     {
         return $this->getParameter('password');
@@ -100,16 +100,13 @@ class Gateway extends AbstractGateway
         return $this->setParameter('password', $value);
     }
 
-  // KG
-  public function getMerchantAccountEmail()
-  {
-    return $this->getParameter('Merchant Account Email');
-  }
+    public function getMerchantAccountEmail()
+    {
+        return $this->getParameter('Merchant Account Email');
+    }
 
-  // KG
-  public function setMerchantAccountEmail($value)
-  {
-    return $this->setParameter('Merchant Account Email', $value);
-  }
-
+    public function setMerchantAccountEmail($value)
+    {
+        return $this->setParameter('Merchant Account Email', $value);
+    }
 }

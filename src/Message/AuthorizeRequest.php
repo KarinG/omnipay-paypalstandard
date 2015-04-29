@@ -47,16 +47,6 @@ class AuthorizeRequest extends AbstractRequest
     return $this->setParameter('site', $value);
   }
 
-  //public function getRang()
-  //{
-  //  return $this->getParameter('rang');
-  //}
-
-  //public function setRang($value)
-  //{
-  //  return $this->setParameter('rang', $value);
-  //}
-
   public function getMerchantAccountEmail()
   {
     return $this->getParameter('MerchantAccountEmail');
@@ -127,15 +117,6 @@ class AuthorizeRequest extends AbstractRequest
      * @return array
      * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
-    public function getTransactionData()
-    {
-        return array
-        (
-            'site_ref' => $this->getTransactionId(),
-            'total' => $this->getAmount(),
-            'curr' => $this->getCurrencyNumeric(),
-        );
-    }
 
   /**
    * https://www.paypal.com/cgi-bin/webscr?business=adc%40lllc.ca
@@ -148,7 +129,7 @@ class AuthorizeRequest extends AbstractRequest
    * &no_shipping=1
    * &return=http%3A//master.localhost/civicrm/contribute/transact%3F_qf_ThankYou_display%3D1%26qfKey%3D625fc646d33436867a2bd9ff00a2fa91_5405
    * &rm=2
-   * &currency_code=USD
+   * &currency_code=CAD
    * &invoice=bda021136b22877a700635194ebeac8c
    * &lc=US
    * &charset=UTF-8
@@ -161,8 +142,10 @@ class AuthorizeRequest extends AbstractRequest
   {
     return array
     (
-      'amount' => $this->getAmountInteger(),
-      'currency_code' => $this->getCurrencyNumeric(),
+      //'amount' => $this->getAmountInteger(),
+      'amount' => $this->getAmount(),
+      //'currency_code' => $this->getCurrencyNumeric(),
+      'currency_code' => $this->getCurrency(),
       'invoice' => $this->getTransactionId(),
       'email' => $this->getCard()->getEmail(),
       //'PBX_RETOUR' => 'Mt:M;Id:R;Ref:A;Erreur:E;sign:K',
@@ -175,7 +158,6 @@ class AuthorizeRequest extends AbstractRequest
    * Get data that is common to all requests - generally aut
    */
 
-*/
   public function getBaseData()
   {
     return array(
@@ -184,14 +166,6 @@ class AuthorizeRequest extends AbstractRequest
       //'PBX_IDENTIFIANT' => $this->getIdentifiant(),
       //'type' => $this->getTransactionType(),
     );
-  }
-
-  /**
-   * @return string
-   */
-  public function getUniqueID()
-  {
-    return uniqid();
   }
 
   /**
