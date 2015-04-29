@@ -86,15 +86,17 @@ class AuthorizeRequest extends AbstractRequest
    * Get values for IPN and browser return urls.
    *
    * Browser return urls should all be set or non set.
+   *
+   * https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/
    */
   public function getURLData()
   {
     $data = array();
     if ($this->getNotifyUrl()) {
-      $data['notify_url'] = urlencode($this->getNotifyUrl());
+      $data['ipn_notification_url'] = urlencode($this->getNotifyUrl());
     }
     if ($this->getReturnUrl()) {
-      $data['cancel_return'] = $this->getReturnUrl();
+      $data['return_url'] = $this->getReturnUrl();
       //$data['PBX_REFUSE'] = $this->getReturnUrl();
       $data['cancel_return'] = $this->getCancelUrl();
       //$data['PBX_ATTENTE'] = $this->getReturnUrl();
